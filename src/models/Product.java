@@ -8,16 +8,16 @@ public class Product {
     private String name; //Поле не может быть null, Строка не может быть пустой
     private Coordinates coordinates; //Поле не может быть null
     private java.time.LocalDate creationDate; //Поле не может быть null, Значение этого поля должно генерироваться автоматически
-    private float price; //Значение поля должно быть больше 0
-    private String partNumber; //Длина строки не должна быть больше 45, Поле может быть null
-    private float manufactureCost;
+    private Integer price; //Поле может быть null, Значение поля должно быть больше 0
+    private String partNumber; //Строка не может быть пустой, Поле может быть null
+    private Integer manufactureCost; //Поле не может быть null
     private UnitOfMeasure unitOfMeasure; //Поле не может быть null
     private Organization manufacturer; //Поле не может быть null
 
     private static long currentId = 1;
 
-    public Product(String name, Coordinates coordinates, float price, String partNumber,
-                   float manufactureCost, UnitOfMeasure unitOfMeasure, Organization manufacturer) {
+    public Product(String name, Coordinates coordinates, Integer price, String partNumber,
+                   Integer manufactureCost, UnitOfMeasure unitOfMeasure, Organization manufacturer) {
         this.setName(name);
         this.setCoordinates(coordinates);
         creationDate = java.time.LocalDate.now();
@@ -59,12 +59,12 @@ public class Product {
         return creationDate;
     }
 
-    public float getPrice() {
+    public Integer getPrice() {
         return price;
     }
 
-    public void setPrice(float price) throws IllegalArgumentException {
-        if (price > 0) {
+    public void setPrice(Integer price) throws IllegalArgumentException {
+        if (price == null || price > 0) {
             this.price = price;
         }
         else {
@@ -77,20 +77,23 @@ public class Product {
     }
 
     public void setPartNumber(String partNumber) throws IllegalArgumentException {
-        if (partNumber == null || partNumber.length() <= 45) {
+        if (partNumber == null || !partNumber.isEmpty()) {
             this.partNumber = partNumber;
         }
         else {
-            throw new IllegalArgumentException("length of partNumber should not be bigger than 45");
+            throw new IllegalArgumentException("partNumber should not be empty");
         }
     }
 
-    public float getManufactureCost() {
+    public Integer getManufactureCost() {
         return manufactureCost;
     }
 
-    public void setManufactureCost(float manufactureCost){
-        this.manufactureCost = manufactureCost;
+    public void setManufactureCost(Integer manufactureCost) throws IllegalArgumentException {
+        if (manufactureCost != null) {
+            this.manufactureCost = manufactureCost;
+        }
+        throw new IllegalArgumentException("manufactureCost cannot be null");
     }
 
     public UnitOfMeasure getUnitOfMeasure() {

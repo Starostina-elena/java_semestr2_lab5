@@ -4,12 +4,12 @@ import java.util.Objects;
 
 public class Organization {
 
-    private int id; //Значение поля должно быть больше 0, Значение этого поля должно быть уникальным, Значение этого поля должно генерироваться автоматически
+    private Long id; //Значение поля должно быть больше 0, Значение этого поля должно быть уникальным, Значение этого поля должно генерироваться автоматически
     private String name; //Поле не может быть null, Строка не может быть пустой
     private String fullName; //Поле может быть null
     private Integer employeesCount; //Поле может быть null, Значение поля должно быть больше 0
 
-    private static int currentId = 1;
+    private static Long currentId = 1L;
 
     public Organization(String name, String fullName, Integer employeesCount) {
         this.setName(name);
@@ -18,7 +18,7 @@ public class Organization {
         id = currentId++;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
