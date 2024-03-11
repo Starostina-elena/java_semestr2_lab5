@@ -2,7 +2,8 @@ package models;
 
 import java.util.Objects;
 
-public class Product {
+/**Product class*/
+public class Product implements Comparable<Product> {
 
     private long id; //Значение поля должно быть больше 0, Значение этого поля должно быть уникальным, Значение этого поля должно генерироваться автоматически
     private String name; //Поле не может быть null, Строка не может быть пустой
@@ -29,14 +30,17 @@ public class Product {
         id = currentId++;
     }
 
+    /**Returns id of the element*/
     public long getId() {
         return id;
     }
 
+    /**Returns a name of the element */
     public String getName() {
         return name;
     }
 
+    /**Sets a name to the element. Name shouldn't be null or empty*/
     public void setName(String name) throws IllegalArgumentException {
         if (name.isEmpty()) {
             throw new IllegalArgumentException("name cannot be empty");
@@ -44,10 +48,12 @@ public class Product {
         this.name = name;
     }
 
+    /**Returns coordinates of the element*/
     public Coordinates getCoordinates() {
         return coordinates;
     }
 
+    /**Sets coordinates to the element. Coordinates cannot be null*/
     public void setCoordinates(Coordinates coordinates) throws IllegalArgumentException {
         if (coordinates == null) {
             throw new IllegalArgumentException("coordinates cannot be null");
@@ -55,14 +61,17 @@ public class Product {
         this.coordinates = coordinates;
     }
 
+    /**Return creationDate of the element*/
     public java.time.LocalDate getCreationDate() {
         return creationDate;
     }
 
+    /**Returns price of the element*/
     public Integer getPrice() {
         return price;
     }
 
+    /**Set price to the element. Price can be null but it should be greater than 0*/
     public void setPrice(Integer price) throws IllegalArgumentException {
         if (price == null || price > 0) {
             this.price = price;
@@ -72,10 +81,12 @@ public class Product {
         }
     }
 
+    /**Returns partNumber of the element*/
     public String getPartNumber() {
         return partNumber;
     }
 
+    /**Set partNumber to the element. Part number cannot be null or empty*/
     public void setPartNumber(String partNumber) throws IllegalArgumentException {
         if (partNumber == null || !partNumber.isEmpty()) {
             this.partNumber = partNumber;
@@ -85,32 +96,36 @@ public class Product {
         }
     }
 
+    /**returns a manufactureCost of the element*/
     public Integer getManufactureCost() {
         return manufactureCost;
     }
 
+    /**sets manufactureCost to the element. ManufactureCost cannot be null*/
     public void setManufactureCost(Integer manufactureCost) throws IllegalArgumentException {
-        if (manufactureCost != null) {
-            this.manufactureCost = manufactureCost;
+        if (manufactureCost == null) {
+            throw new IllegalArgumentException("manufactureCost cannot be null");
+
         }
-        throw new IllegalArgumentException("manufactureCost cannot be null");
+        this.manufactureCost = manufactureCost;
     }
 
+    /**return unitOfMeasure of the element*/
     public UnitOfMeasure getUnitOfMeasure() {
         return unitOfMeasure;
     }
 
+    /**sets unitOfMeasure to the element. This field can be null*/
     public void setUnitOfMeasure(UnitOfMeasure unitOfMeasure) throws IllegalArgumentException {
-        if (unitOfMeasure == null) {
-            throw new IllegalArgumentException("unitOfMeasure cannot be null");
-        }
         this.unitOfMeasure = unitOfMeasure;
     }
 
+    /**returns manufacturer of the element*/
     public Organization getManufacturer() {
         return manufacturer;
     }
 
+    /**sets manufacturer to the element. This field cannot be null*/
     public void setManufacturer(Organization manufacturer) throws IllegalArgumentException {
         if (manufacturer == null) {
             throw new IllegalArgumentException("manufacturer cannot be null");
@@ -143,5 +158,16 @@ public class Product {
                 ", unitOfMeasure=" + unitOfMeasure +
                 ", manufacturer=" + manufacturer +
                 '}';
+    }
+
+    @Override
+    public int compareTo(Product o) {
+        if (o == null) return 1;
+        return this.price - o.price;
+    }
+
+    /**Updates currentId after adding elements from the file*/
+    public static void updateId(long newId) {
+        currentId = newId + 1;
     }
 }

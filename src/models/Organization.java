@@ -2,7 +2,8 @@ package models;
 
 import java.util.Objects;
 
-public class Organization {
+/**Organization class*/
+public class Organization implements Comparable<Organization> {
 
     private Long id; //Значение поля должно быть больше 0, Значение этого поля должно быть уникальным, Значение этого поля должно генерироваться автоматически
     private String name; //Поле не может быть null, Строка не может быть пустой
@@ -26,6 +27,7 @@ public class Organization {
         return name;
     }
 
+    /**sets name to the organization. Name cannot be null or empty*/
     public void setName(String name) throws IllegalArgumentException {
         if (name.isEmpty()) {
             throw new IllegalArgumentException("name cannot be empty");
@@ -37,6 +39,7 @@ public class Organization {
         return fullName;
     }
 
+    /**Sets fullname to the organization. Field can be null*/
     public void setFullName(String fullName) {
         this.fullName = fullName;
     }
@@ -45,6 +48,7 @@ public class Organization {
         return employeesCount;
     }
 
+    /**Sets employeesCount. Field can pe null but its value should be greater than 0*/
     public void setEmployeesCount(Integer employeesCount) {
         if (employeesCount == null || employeesCount > 0) {
             this.employeesCount = employeesCount;
@@ -52,6 +56,10 @@ public class Organization {
         else {
             throw new IllegalArgumentException("employeesCount should be more than 0");
         }
+    }
+
+    public static void updateId(long newId) {
+        currentId = newId + 1;
     }
 
     @Override
@@ -74,6 +82,18 @@ public class Organization {
                 ", fullName='" + fullName + '\'' +
                 ", employeesCount=" + employeesCount +
                 '}';
+    }
+
+    @Override
+    public int compareTo(Organization o) {
+        if (o == null) return 1;
+        if (this.id > o.getId()) {
+            return 1;
+        } else if (Objects.equals(this.id, o.getId())) {
+            return 0;
+        } else {
+            return -1;
+        }
     }
 
 }
