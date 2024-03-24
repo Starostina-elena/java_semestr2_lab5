@@ -1,7 +1,7 @@
-package commands;
+package com.app.commands;
 
-import managers.CollectionManager;
-import models.Product;
+import com.app.managers.CollectionManager;
+import com.app.models.Product;
 
 public class CountByPartNumberCommand implements Command {
 

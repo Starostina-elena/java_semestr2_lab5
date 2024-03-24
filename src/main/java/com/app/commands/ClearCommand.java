@@ -1,6 +1,6 @@
-package commands;
+package com.app.commands;
 
-import managers.CollectionManager;
+import com.app.managers.CollectionManager;
 
 import java.util.ArrayDeque;
 

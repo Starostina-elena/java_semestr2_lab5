@@ -1,42 +1,49 @@
-package commands;
+package com.app.commands;
 
-import managers.CollectionManager;
-import models.Coordinates;
-import models.Organization;
-import models.Product;
-import models.UnitOfMeasure;
+import com.app.managers.CollectionManager;
+import com.app.models.Coordinates;
+import com.app.models.Organization;
+import com.app.models.Product;
+import com.app.models.UnitOfMeasure;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class UpdateCommand implements Command {
+public class AddCommand implements Command {
 
     private CollectionManager collectionManager;
 
-    public UpdateCommand(CollectionManager collectionManager) {
+    public AddCommand(CollectionManager collectionManager) {
         this.collectionManager = collectionManager;
     }
 
     public String description() {
-        return "update product by it's id. Pattern: update (long)id";
+        return "adds an element to collection. " +
+                "Pattern: add (String)name (Integer)price(may be null, use empty string) (String)partNumber (Integer)manufactureCost";
     }
 
     public void execute(String[] arguments) {
         try {
-            Product product = collectionManager.getById(Integer.parseInt(arguments[1]));
-            System.out.println(product);
-            System.out.println("Enter new name");
-            Scanner in = new Scanner(System.in);
-            while (true) {
-                try {
-                    String name = in.nextLine();
-                    product.setName(name);
-                    break;
-                } catch (IllegalArgumentException e) {
-                    System.out.println(e + ". Please try again");
+            Integer price;
+            try {
+                if (arguments[2].isBlank()) {
+                    price = null;
+                } else {
+                    price = Integer.parseInt(arguments[2]);
                 }
+            } catch (NumberFormatException e) {
+                System.out.println("price is not correct, try again" + arguments[2]);
+                return;
             }
+            try {
+                Integer.parseInt(arguments[4]);
+            } catch (NumberFormatException e) {
+                System.out.println("manufactureCost is not correct, try again");
+                return;
+            }
+            Scanner in = new Scanner(System.in);
             Coordinates coords;
             long x;
             double y;
@@ -53,50 +60,14 @@ public class UpdateCommand implements Command {
                     in.nextLine();
                 }
             }
-            product.setCoordinates(coords);
-            System.out.println("Enter new price (integer)");
-            while (true) {
-                try {
-                    Integer price = in.nextInt();
-                    product.setPrice(price);
-                    break;
-                } catch (InputMismatchException e) {
-                    System.out.println("Price should be integer. Please try again");
-                    in.nextLine();
-                } catch (IllegalArgumentException e) {
-                    System.out.println(e + ". Please try again");
-                }
-            }
-            System.out.println("Enter new partNumber");
-            in.nextLine();
-            while (true) {
-                try {
-                    String partNumber = in.nextLine();
-                    product.setPartNumber(partNumber);
-                    break;
-                } catch (IllegalArgumentException e) {
-                    System.out.println(e + ". Please try again");
-                }
-            }
-            System.out.println("Enter new manufactureCost (integer)");
-            while (true) {
-                try {
-                    Integer manufactureCost = in.nextInt();
-                    product.setManufactureCost(manufactureCost);
-                    break;
-                } catch (InputMismatchException e) {
-                    System.out.println("manufactureCost should be integer. Please try again");
-                    in.nextLine();
-                } catch (IllegalArgumentException e) {
-                    System.out.println(e + ". Please try again");
-                }
-            }
+            coords = new Coordinates(1, 2);
             ArrayList<String> unitOfMeasures = new ArrayList<>();
             System.out.println("Enter one of unit of measure:");
             for (UnitOfMeasure c : UnitOfMeasure.values()) {
                 System.out.println(c);
                 unitOfMeasures.add(c.name());
             }
+            in.nextLine();
             String unitOfMeasure = in.nextLine();
             while (!unitOfMeasures.contains(unitOfMeasure) & !unitOfMeasure.isBlank()) {
                 System.out.println("Wrong unit of measure, please try again:");
@@ -108,9 +79,7 @@ public class UpdateCommand implements Command {
             } else {
                 resUnitOfMeasure = UnitOfMeasure.valueOf(unitOfMeasure);
             }
-            product.setUnitOfMeasure(resUnitOfMeasure);
             Organization org;
-            in.nextLine();
             while (true) {
                 try {
                     System.out.println("Enter organization (String)name");
@@ -141,15 +110,16 @@ public class UpdateCommand implements Command {
                     System.out.println(e + ". Please try again");
                 }
             }
-            product.setManufacturer(org);
-            System.out.println("Updated successfully");
-        } catch (ArrayIndexOutOfBoundsException e) {
-            System.out.println("Incorrect number of arguments for update command. Please try again");
-        } catch (NumberFormatException e) {
-            System.out.println("id is not integer. Please try again");
+
+            Product product = new Product(arguments[1], coords, price, arguments[3],
+                    Integer.parseInt(arguments[4]), resUnitOfMeasure, org);
+            collectionManager.addToCollection(product);
+            System.out.println("object was successfully added");
+            System.out.println(product);
         } catch (IllegalArgumentException e) {
             System.out.println(e + ". Please try again");
+        } catch (ArrayIndexOutOfBoundsException e) {
+            System.out.println("Incorrect number of arguments for add command. Please try again");
         }
     }
-
 }

@@ -1,4 +1,4 @@
-package commands;
+package com.app.commands;
 
 public interface Command {
     void execute(String[] arguments);

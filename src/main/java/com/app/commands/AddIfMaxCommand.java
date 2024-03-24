@@ -1,27 +1,25 @@
-package commands;
+package com.app.commands;
 
-import managers.CollectionManager;
-import models.Coordinates;
-import models.Organization;
-import models.Product;
-import models.UnitOfMeasure;
+import com.app.managers.CollectionManager;
+import com.app.models.Coordinates;
+import com.app.models.Organization;
+import com.app.models.Product;
+import com.app.models.UnitOfMeasure;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.InputMismatchException;
-import java.util.Scanner;
+import java.util.*;
 
-public class AddCommand implements Command {
+public class AddIfMaxCommand implements Command {
 
     private CollectionManager collectionManager;
 
-    public AddCommand(CollectionManager collectionManager) {
+    public AddIfMaxCommand(CollectionManager collectionManager) {
         this.collectionManager = collectionManager;
     }
 
     public String description() {
-        return "adds an element to collection. " +
-                "Pattern: add (String)name (Integer)price(may be null, use empty string) (String)partNumber (Integer)manufactureCost";
+        return "adds new element if this element is bigger than max element in collection. Pattern: " +
+                "add_if_max (String)name (Integer)price(may be null, use empty string) (String)partNumber " +
+                "(Integer)manufactureCost";
     }
 
     public void execute(String[] arguments) {
@@ -113,13 +111,24 @@ public class AddCommand implements Command {
 
             Product product = new Product(arguments[1], coords, price, arguments[3],
                     Integer.parseInt(arguments[4]), resUnitOfMeasure, org);
-            collectionManager.addToCollection(product);
-            System.out.println("object was successfully added");
-            System.out.println(product);
+            Product max_product = collectionManager.getProductCollection().getFirst();
+            for (Product c : collectionManager.getProductCollection()) {
+                if (c.compareTo(max_product) > 0) {
+                    max_product = c;
+                }
+            }
+            if (product.compareTo(max_product) > 0) {
+                collectionManager.addToCollection(product);
+                System.out.println("object was successfully added");
+                System.out.println(product);
+            } else {
+                System.out.println("object is not max, it wasn't added");
+            }
         } catch (IllegalArgumentException e) {
             System.out.println(e + ". Please try again");
         } catch (ArrayIndexOutOfBoundsException e) {
-            System.out.println("Incorrect number of arguments for add command. Please try again");
+            System.out.println("Incorrect number of arguments for add_if_max command. Please try again");
         }
     }
+
 }

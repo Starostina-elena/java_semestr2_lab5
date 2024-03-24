@@ -1,6 +1,6 @@
-package managers;
+package com.app.managers;
 
-import commands.*;
+import com.app.commands.*;
 
 import java.util.*;
 
@@ -17,22 +17,22 @@ public class CommandManager {
         this.collectionManager = collectionManager;
         this.fileManager = fileManager;
 
-        commandsManager.put("help", new commands.HelpCommand(this));
-        commandsManager.put("add", new commands.AddCommand(this.collectionManager));
-        commandsManager.put("info", new commands.InfoCommand(this.collectionManager));
-        commandsManager.put("show", new commands.ShowCommand(this.collectionManager));
-        commandsManager.put("update", new commands.UpdateCommand(this.collectionManager));
-        commandsManager.put("remove_by_id", new commands.RemoveByIdCommand(this.collectionManager));
-        commandsManager.put("clear", new commands.ClearCommand(this.collectionManager));
-        commandsManager.put("save", new commands.SaveCommand(this.fileManager, this.collectionManager));
-        commandsManager.put("exit", new commands.ExitCommand());
-        commandsManager.put("remove_head", new commands.RemoveHeadCommand(this.collectionManager));
-        commandsManager.put("add_if_max", new commands.AddIfMaxCommand(this.collectionManager));
-        commandsManager.put("remove_lower", new commands.RemoveLowerCommand(this.collectionManager));
-        commandsManager.put("min_by_id", new commands.MinByIdCommand(this.collectionManager));
-        commandsManager.put("count_by_part_number", new commands.CountByPartNumberCommand(this.collectionManager));
-        commandsManager.put("print_field_ascending_manufacturer", new commands.PrintFieldAscendingManufacturerCommand(this.collectionManager));
-        commandsManager.put("execute_script_file_name", new commands.ExecuteScriptFileNameCommand(this));
+        commandsManager.put("help", new HelpCommand(this));
+        commandsManager.put("add", new AddCommand(this.collectionManager));
+        commandsManager.put("info", new InfoCommand(this.collectionManager));
+        commandsManager.put("show", new ShowCommand(this.collectionManager));
+        commandsManager.put("update", new UpdateCommand(this.collectionManager));
+        commandsManager.put("remove_by_id", new RemoveByIdCommand(this.collectionManager));
+        commandsManager.put("clear", new ClearCommand(this.collectionManager));
+        commandsManager.put("save", new SaveCommand(this.fileManager, this.collectionManager));
+        commandsManager.put("exit", new ExitCommand());
+        commandsManager.put("remove_head", new RemoveHeadCommand(this.collectionManager));
+        commandsManager.put("add_if_max", new AddIfMaxCommand(this.collectionManager));
+        commandsManager.put("remove_lower", new RemoveLowerCommand(this.collectionManager));
+        commandsManager.put("min_by_id", new MinByIdCommand(this.collectionManager));
+        commandsManager.put("count_by_part_number", new CountByPartNumberCommand(this.collectionManager));
+        commandsManager.put("print_field_ascending_manufacturer", new PrintFieldAscendingManufacturerCommand(this.collectionManager));
+        commandsManager.put("execute_script_file_name", new ExecuteScriptFileNameCommand(this));
     }
 
     /**Execution from command line*/

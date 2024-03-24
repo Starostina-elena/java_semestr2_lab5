@@ -34,4 +34,39 @@
       <employeesCount>21</employeesCount>
     </manufacturer>
   </models.Product>
+  <models.Product>
+    <id>3</id>
+    <name>hgf</name>
+    <coordinates>
+      <x>1</x>
+      <y>2.0</y>
+    </coordinates>
+    <creationDate>2024-03-11</creationDate>
+    <price>5</price>
+    <partNumber>fgh</partNumber>
+    <manufactureCost>7</manufactureCost>
+    <unitOfMeasure>GRAMS</unitOfMeasure>
+    <manufacturer>
+      <id>4</id>
+      <name>tretre</name>
+    </manufacturer>
+  </models.Product>
+  <models.Product>
+    <id>4</id>
+    <name>&lt;d&gt;&lt;/d&gt;</name>
+    <coordinates>
+      <x>1</x>
+      <y>2.0</y>
+    </coordinates>
+    <creationDate>2024-03-11</creationDate>
+    <price>8</price>
+    <partNumber>jhg</partNumber>
+    <manufactureCost>9</manufactureCost>
+    <unitOfMeasure>GRAMS</unitOfMeasure>
+    <manufacturer>
+      <id>5</id>
+      <name>432432</name>
+      <fullName>jhgjhg</fullName>
+    </manufacturer>
+  </models.Product>
 </list>

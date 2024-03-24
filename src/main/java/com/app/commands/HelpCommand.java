@@ -1,6 +1,6 @@
-package commands;
+package com.app.commands;
 
-import managers.CommandManager;
+import com.app.managers.CommandManager;
 
 import java.util.Map;
 

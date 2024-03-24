@@ -1,7 +1,7 @@
-package managers;
+package com.app.managers;
 
-import models.Organization;
-import models.Product;
+import com.app.models.Organization;
+import com.app.models.Product;
 
 import java.util.ArrayDeque;
 

@@ -1,10 +1,10 @@
-package commands;
+package com.app.commands;
 
-import managers.CollectionManager;
-import models.Coordinates;
-import models.Organization;
-import models.Product;
-import models.UnitOfMeasure;
+import com.app.managers.CollectionManager;
+import com.app.models.Coordinates;
+import com.app.models.Organization;
+import com.app.models.Product;
+import com.app.models.UnitOfMeasure;
 
 import java.util.ArrayList;
 import java.util.InputMismatchException;

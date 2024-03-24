@@ -1,7 +1,7 @@
-package commands;
+package com.app.commands;
 
-import managers.CollectionManager;
-import managers.FileManager;
+import com.app.managers.CollectionManager;
+import com.app.managers.FileManager;
 
 import java.util.ArrayDeque;
 

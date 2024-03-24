@@ -1,6 +1,6 @@
-package managers;
+package com.app.managers;
 
-import models.Product;
+import com.app.models.Product;
 
 import java.io.*;
 import java.util.ArrayDeque;

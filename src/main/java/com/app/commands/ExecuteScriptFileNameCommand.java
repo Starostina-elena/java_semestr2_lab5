@@ -1,7 +1,7 @@
-package commands;
+package com.app.commands;
 
-import managers.CollectionManager;
-import managers.CommandManager;
+import com.app.managers.CollectionManager;
+import com.app.managers.CommandManager;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
