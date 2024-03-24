@@ -1,72 +1,39 @@
 <list>
-  <models.Product>
+  <com.app.models.Product>
     <id>1</id>
-    <name>prod</name>
+    <name>name1</name>
     <coordinates>
-      <x>12</x>
-      <y>12.0</y>
+      <x>1</x>
+      <y>2.0</y>
     </coordinates>
-    <creationDate>2024-02-26</creationDate>
-    <price>200</price>
-    <partNumber>12f</partNumber>
-    <manufactureCost>10</manufactureCost>
+    <creationDate>2024-03-24</creationDate>
+    <price>100</price>
+    <partNumber>ryjgne18</partNumber>
+    <manufactureCost>80</manufactureCost>
+    <unitOfMeasure>GRAMS</unitOfMeasure>
     <manufacturer>
-      <id>3</id>
-      <name>zsd</name>
+      <id>1</id>
+      <name>org1</name>
+      <employeesCount>12</employeesCount>
     </manufacturer>
-  </models.Product>
-  <models.Product>
+  </com.app.models.Product>
+  <com.app.models.Product>
     <id>2</id>
-    <name>prod2</name>
+    <name>name2</name>
     <coordinates>
-      <x>11</x>
-      <y>14.0</y>
+      <x>1</x>
+      <y>2.0</y>
     </coordinates>
-    <creationDate>2024-02-26</creationDate>
-    <price>320</price>
-    <partNumber>1f</partNumber>
-    <manufactureCost>1</manufactureCost>
-    <unitOfMeasure>MILLILITERS</unitOfMeasure>
+    <creationDate>2024-03-24</creationDate>
+    <price>200</price>
+    <partNumber>skdjfn10</partNumber>
+    <manufactureCost>100</manufactureCost>
+    <unitOfMeasure>GRAMS</unitOfMeasure>
     <manufacturer>
       <id>2</id>
-      <name>name2</name>
-      <fullName>fullname2</fullName>
-      <employeesCount>21</employeesCount>
+      <name>org2</name>
+      <fullName>organization2</fullName>
+      <employeesCount>1</employeesCount>
     </manufacturer>
-  </models.Product>
-  <models.Product>
-    <id>3</id>
-    <name>hgf</name>
-    <coordinates>
-      <x>1</x>
-      <y>2.0</y>
-    </coordinates>
-    <creationDate>2024-03-11</creationDate>
-    <price>5</price>
-    <partNumber>fgh</partNumber>
-    <manufactureCost>7</manufactureCost>
-    <unitOfMeasure>GRAMS</unitOfMeasure>
-    <manufacturer>
-      <id>4</id>
-      <name>tretre</name>
-    </manufacturer>
-  </models.Product>
-  <models.Product>
-    <id>4</id>
-    <name>&lt;d&gt;&lt;/d&gt;</name>
-    <coordinates>
-      <x>1</x>
-      <y>2.0</y>
-    </coordinates>
-    <creationDate>2024-03-11</creationDate>
-    <price>8</price>
-    <partNumber>jhg</partNumber>
-    <manufactureCost>9</manufactureCost>
-    <unitOfMeasure>GRAMS</unitOfMeasure>
-    <manufacturer>
-      <id>5</id>
-      <name>432432</name>
-      <fullName>jhgjhg</fullName>
-    </manufacturer>
-  </models.Product>
+  </com.app.models.Product>
 </list>

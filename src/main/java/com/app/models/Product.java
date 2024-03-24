@@ -163,7 +163,7 @@ public class Product implements Comparable<Product> {
     @Override
     public int compareTo(Product o) {
         if (o == null) return 1;
-        return this.price - o.price;
+        return this.price - o.getPrice();
     }
 
     /**Updates currentId after adding elements from the file*/
