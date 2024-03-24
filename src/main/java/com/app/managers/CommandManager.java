@@ -38,15 +38,11 @@ public class CommandManager {
     /**Execution from command line*/
     public void executeFromCommandLine() {
         Scanner sc = new Scanner(System.in);
+        System.out.print("> ");
         while(sc.hasNext()) {
             String line = sc.nextLine();
-            String[] tokens = line.split(" ");
-            Command command = commandsManager.get(tokens[0]);
-            try {
-                command.execute(tokens);
-            } catch (NullPointerException e) {
-                System.out.println("Incorrect command. Use help to see a list of available commands");
-            }
+            executeCommand(line);
+            System.out.print("> ");
         }
     }
 

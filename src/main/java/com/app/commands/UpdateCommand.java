@@ -27,6 +27,7 @@ public class UpdateCommand implements Command {
             Product product = collectionManager.getById(Integer.parseInt(arguments[1]));
             System.out.println(product);
             System.out.println("Enter new name");
+            System.out.print("> ");
             Scanner in = new Scanner(System.in);
             while (true) {
                 try {
@@ -35,6 +36,7 @@ public class UpdateCommand implements Command {
                     break;
                 } catch (IllegalArgumentException e) {
                     System.out.println(e + ". Please try again");
+                    System.out.print("> ");
                 }
             }
             Coordinates coords;
@@ -43,8 +45,10 @@ public class UpdateCommand implements Command {
             while (true) {
                 try {
                     System.out.println("Enter coordinates (long)x");
+                    System.out.print("> ");
                     x = in.nextLong();
                     System.out.println("Enter coordinates (double)y");
+                    System.out.print("> ");
                     y = in.nextDouble();
                     coords = new Coordinates(x, y);
                     break;
@@ -57,6 +61,7 @@ public class UpdateCommand implements Command {
             System.out.println("Enter new price (integer)");
             while (true) {
                 try {
+                    System.out.print("> ");
                     Integer price = in.nextInt();
                     product.setPrice(price);
                     break;
@@ -68,6 +73,7 @@ public class UpdateCommand implements Command {
                 }
             }
             System.out.println("Enter new partNumber");
+            System.out.print("> ");
             in.nextLine();
             while (true) {
                 try {
@@ -76,11 +82,13 @@ public class UpdateCommand implements Command {
                     break;
                 } catch (IllegalArgumentException e) {
                     System.out.println(e + ". Please try again");
+                    System.out.print("> ");
                 }
             }
             System.out.println("Enter new manufactureCost (integer)");
             while (true) {
                 try {
+                    System.out.print("> ");
                     Integer manufactureCost = in.nextInt();
                     product.setManufactureCost(manufactureCost);
                     break;
@@ -97,9 +105,11 @@ public class UpdateCommand implements Command {
                 System.out.println(c);
                 unitOfMeasures.add(c.name());
             }
+            System.out.print("> ");
             String unitOfMeasure = in.nextLine();
             while (!unitOfMeasures.contains(unitOfMeasure) & !unitOfMeasure.isBlank()) {
                 System.out.println("Wrong unit of measure, please try again:");
+                System.out.print("> ");
                 unitOfMeasure = in.nextLine();
             }
             UnitOfMeasure resUnitOfMeasure;
@@ -114,8 +124,10 @@ public class UpdateCommand implements Command {
             while (true) {
                 try {
                     System.out.println("Enter organization (String)name");
+                    System.out.print("> ");
                     String name = in.nextLine();
                     System.out.println("Enter organization (String)fullName. Press enter to leave this field empty");
+                    System.out.print("> ");
                     String fullName = in.nextLine();
                     if (fullName.isBlank()) {
                         fullName = null;
@@ -124,6 +136,7 @@ public class UpdateCommand implements Command {
                     while (true) {
                         try {
                             System.out.println("Enter organization (Integer)employeesCount. Press enter to leave this field empty");
+                            System.out.print("> ");
                             String inEmployeesCount = in.nextLine();
                             if (inEmployeesCount.isBlank()) {
                                 employeesCount = null;

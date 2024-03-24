@@ -50,8 +50,10 @@ public class AddCommand implements Command {
             while (true) {
                 try {
                     System.out.println("Enter coordinates (long)x");
+                    System.out.print("> ");
                     x = in.nextLong();
                     System.out.println("Enter coordinates (double)y");
+                    System.out.print("> ");
                     y = in.nextDouble();
                     coords = new Coordinates(x, y);
                     break;
@@ -60,17 +62,19 @@ public class AddCommand implements Command {
                     in.nextLine();
                 }
             }
-            coords = new Coordinates(1, 2);
+            coords = new Coordinates(x, y);
             ArrayList<String> unitOfMeasures = new ArrayList<>();
             System.out.println("Enter one of unit of measure:");
             for (UnitOfMeasure c : UnitOfMeasure.values()) {
                 System.out.println(c);
                 unitOfMeasures.add(c.name());
             }
+            System.out.print("> ");
             in.nextLine();
             String unitOfMeasure = in.nextLine();
             while (!unitOfMeasures.contains(unitOfMeasure) & !unitOfMeasure.isBlank()) {
                 System.out.println("Wrong unit of measure, please try again:");
+                System.out.print("> ");
                 unitOfMeasure = in.nextLine();
             }
             UnitOfMeasure resUnitOfMeasure;
@@ -83,8 +87,10 @@ public class AddCommand implements Command {
             while (true) {
                 try {
                     System.out.println("Enter organization (String)name");
+                    System.out.print("> ");
                     String name = in.nextLine();
                     System.out.println("Enter organization (String)fullName. Press enter to leave this field empty");
+                    System.out.print("> ");
                     String fullName = in.nextLine();
                     if (fullName.isBlank()) {
                         fullName = null;
@@ -93,6 +99,7 @@ public class AddCommand implements Command {
                     while (true) {
                         try {
                             System.out.println("Enter organization (Integer)employeesCount. Press enter to leave this field empty");
+                            System.out.print("> ");
                             String inEmployeesCount = in.nextLine();
                             if (inEmployeesCount.isBlank()) {
                                 employeesCount = null;
