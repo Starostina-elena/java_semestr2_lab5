@@ -106,11 +106,12 @@ public class UpdateCommand implements Command {
                 unitOfMeasures.add(c.name());
             }
             System.out.print("> ");
-            String unitOfMeasure = in.nextLine();
+            in.nextLine();
+            String unitOfMeasure = in.nextLine().toUpperCase();
             while (!unitOfMeasures.contains(unitOfMeasure) & !unitOfMeasure.isBlank()) {
                 System.out.println("Wrong unit of measure, please try again:");
                 System.out.print("> ");
-                unitOfMeasure = in.nextLine();
+                unitOfMeasure = in.nextLine().toUpperCase();
             }
             UnitOfMeasure resUnitOfMeasure;
             if (unitOfMeasure.isBlank()) {
@@ -120,7 +121,6 @@ public class UpdateCommand implements Command {
             }
             product.setUnitOfMeasure(resUnitOfMeasure);
             Organization org;
-            in.nextLine();
             while (true) {
                 try {
                     System.out.println("Enter organization (String)name");

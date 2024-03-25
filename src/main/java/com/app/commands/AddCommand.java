@@ -62,7 +62,6 @@ public class AddCommand implements Command {
                     in.nextLine();
                 }
             }
-            coords = new Coordinates(x, y);
             ArrayList<String> unitOfMeasures = new ArrayList<>();
             System.out.println("Enter one of unit of measure:");
             for (UnitOfMeasure c : UnitOfMeasure.values()) {
@@ -71,11 +70,11 @@ public class AddCommand implements Command {
             }
             System.out.print("> ");
             in.nextLine();
-            String unitOfMeasure = in.nextLine();
+            String unitOfMeasure = in.nextLine().toUpperCase();
             while (!unitOfMeasures.contains(unitOfMeasure) & !unitOfMeasure.isBlank()) {
                 System.out.println("Wrong unit of measure, please try again:");
                 System.out.print("> ");
-                unitOfMeasure = in.nextLine();
+                unitOfMeasure = in.nextLine().toUpperCase();
             }
             UnitOfMeasure resUnitOfMeasure;
             if (unitOfMeasure.isBlank()) {
