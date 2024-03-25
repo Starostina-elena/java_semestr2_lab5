@@ -18,8 +18,22 @@ public class HelpCommand implements Command {
 
     public void execute(String[] arguments) {
         Map<String, Command> commandsLIst = commandManager.getCommandsList();
-        for (String c : commandsLIst.keySet()) {
-            System.out.println(c + ": " + commandsLIst.get(c).description());
+        try {
+            boolean status = false;
+            for (String c : commandsLIst.keySet()) {
+                if (c.equals(arguments[1])) {
+                    System.out.println(c + ": " + commandsLIst.get(c).description());
+                    status = true;
+                    break;
+                }
+            }
+            if (!status) {
+                System.out.println("no such command");
+            }
+        } catch (ArrayIndexOutOfBoundsException e) {
+            for (String c : commandsLIst.keySet()) {
+                System.out.println(c + ": " + commandsLIst.get(c).description());
+            }
         }
 
     }

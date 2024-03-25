@@ -2,6 +2,7 @@ package com.app.managers;
 
 import com.app.commands.*;
 
+import java.io.IOException;
 import java.util.*;
 
 /**CommandManager class. Provides operations with commands*/
@@ -25,7 +26,7 @@ public class CommandManager {
         commandsManager.put("remove_by_id", new RemoveByIdCommand(this.collectionManager));
         commandsManager.put("clear", new ClearCommand(this.collectionManager));
         commandsManager.put("save", new SaveCommand(this.fileManager, this.collectionManager));
-        commandsManager.put("exit", new ExitCommand());
+        commandsManager.put("exit", new ExitCommand(this));
         commandsManager.put("remove_head", new RemoveHeadCommand(this.collectionManager));
         commandsManager.put("add_if_max", new AddIfMaxCommand(this.collectionManager));
         commandsManager.put("remove_lower", new RemoveLowerCommand(this.collectionManager));
@@ -37,12 +38,18 @@ public class CommandManager {
 
     /**Execution from command line*/
     public void executeFromCommandLine() {
-        Scanner sc = new Scanner(System.in);
-        System.out.print("> ");
-        while(sc.hasNext()) {
-            String line = sc.nextLine();
-            executeCommand(line);
+        try {
+            Scanner sc = new Scanner(System.in);
             System.out.print("> ");
+            while(sc.hasNext()) {
+                String line = sc.nextLine();
+                executeCommand(line);
+                System.out.print("> ");
+            }
+        } catch (NoSuchElementException e) {
+            com.app.managers.FileManager errorSave = new com.app.managers.FileManager("urgentSaving.xml");
+            errorSave.writeCollection(collectionManager.getProductCollection());
+            System.out.println("goodbye");
         }
     }
 

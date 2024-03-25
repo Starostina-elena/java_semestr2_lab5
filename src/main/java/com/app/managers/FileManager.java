@@ -10,6 +10,7 @@ import java.util.List;
 
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.StreamException;
+import com.thoughtworks.xstream.io.xml.StaxDriver;
 import com.thoughtworks.xstream.security.NoTypePermission;
 import com.thoughtworks.xstream.security.NullPermission;
 import com.thoughtworks.xstream.security.PrimitiveTypePermission;
@@ -22,11 +23,19 @@ public class FileManager {
 
     public FileManager(String filename) {
         this.filename = filename;
-        xstream = new XStream();
+        xstream = new XStream(new StaxDriver());
     }
 
     public String getFilename() {
         return filename;
+    }
+
+    public boolean checkFileExists() {
+        try (InputStreamReader collectionReader = new InputStreamReader(new FileInputStream(filename))) {
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     public void writeCollection(ArrayDeque<Product> collection) {
